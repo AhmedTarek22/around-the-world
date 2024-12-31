@@ -1,23 +1,23 @@
 import CountryCard from "./CountryCard";
+import EmptySearch from "./EmptySearch";
 
-const CountryList = () => {
+const CountryList = ({ countriesData }) => {
   return (
-    <div className="mt-6 grid grid-cols-12 gap-8">
-      <div className="col-span-12 md:col-span-6 lg:col-span-3">
-        <CountryCard />
-      </div>
-      <div className="col-span-12 md:col-span-6 lg:col-span-3">
-        <CountryCard />
-      </div>
-      <div className="col-span-12 md:col-span-6 lg:col-span-3">
-        <CountryCard />
-      </div>
-      <div className="col-span-12 md:col-span-6 lg:col-span-3">
-        <CountryCard />
-      </div>
-      <div className="col-span-12 md:col-span-6 lg:col-span-3">
-        <CountryCard />
-      </div>
+    <div className="mt-8 grid justify-between gap-x-[70px] gap-y-12 md:mt-12 md:grid-cols-[repeat(2,minmax(0,_auto))] lg:grid-cols-[repeat(4,minmax(0,_auto))] lg:gap-y-[70px]">
+      {countriesData && countriesData.length ? (
+        countriesData.map((country) => (
+          <CountryCard
+            key={country.name.official}
+            name={country.name.common}
+            population={country.population}
+            region={country.region}
+            capital={country.capital}
+            flag={country.flags.svg}
+          />
+        ))
+      ) : (
+        <EmptySearch />
+      )}
     </div>
   );
 };
