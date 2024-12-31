@@ -1,6 +1,6 @@
 import Select from "react-select";
 
-const RegionMenu = () => {
+const RegionMenu = ({ countriesList, filteredCountriesList }) => {
   const options = [
     { value: "all regions", label: "All regions" },
     { value: "africa", label: "Africa" },
@@ -9,9 +9,19 @@ const RegionMenu = () => {
     { value: "oceania", label: "Oceania" },
   ];
 
+  const handleReqionChange = (e) => {
+    const region = e.label;
+    const filteredCountries =
+      region === "All regions"
+        ? countriesList
+        : countriesList.filter((country) => country.region === region);
+    filteredCountriesList(filteredCountries);
+  };
+
   return (
     <Select
       defaultValue={options[0]}
+      onChange={handleReqionChange}
       options={options}
       classNames={{
         input: () => "dark:!text-gray-100",
