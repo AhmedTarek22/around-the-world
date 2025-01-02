@@ -20,7 +20,7 @@ const useFetchData = (country) => {
       url = `https://restcountries.com/v3.1/name/${country}`;
     }
     setIsLoading(true);
-    fetch(url)
+    fetch("https://restcountries.com/v3.1/all")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
